@@ -1,5 +1,12 @@
 package entity;
 
+import org.hibernate.annotations.Entity;
+import org.springframework.data.annotation.Id;
+
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+
 @Entity
 public class User {
     @Id
@@ -10,7 +17,7 @@ public class User {
     private UserType userType;
     private UserGroup userGroup;
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 

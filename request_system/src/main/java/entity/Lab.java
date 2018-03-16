@@ -1,5 +1,12 @@
 package entity;
 
+import org.hibernate.annotations.Entity;
+import org.springframework.data.annotation.Id;
+
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+
 @Entity
 public class Lab {
     @Id
@@ -9,7 +16,7 @@ public class Lab {
     private  String name;
     private  Building building;
 
-    public int getId(){
+    public Long getId(){
         return id;
     }
 
