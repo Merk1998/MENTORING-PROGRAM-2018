@@ -2,6 +2,9 @@ package entity;
 
 @Entity
 public class Task {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
     private Long id;
     private String name;
     private Request request;

@@ -1,7 +1,11 @@
 package entity;
 
+@Entity
 public class AssetToRequest {
-    private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
+    private Long id;
     private Asset asset;
     private Request request;
 
@@ -9,7 +13,7 @@ public class AssetToRequest {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -29,7 +33,7 @@ public class AssetToRequest {
         this.request = request;
     }
 
-    public AssetToRequest(int id, Asset asset, Request request) {
+    public AssetToRequest(Long id, Asset asset, Request request) {
         this.id = id;
         this.asset = asset;
         this.request = request;

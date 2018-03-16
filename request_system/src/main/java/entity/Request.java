@@ -1,7 +1,11 @@
 package entity;
 
+@Entity
 public class Request {
-    private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
+    private Long id;
     private String name;
     private Incident incident;
 
@@ -9,7 +13,7 @@ public class Request {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -29,7 +33,7 @@ public class Request {
         this.incident = incident;
     }
 
-    public Request(int id, String name) {
+    public Request(Long id, String name) {
         this.id = id;
         this.name = name;
     }

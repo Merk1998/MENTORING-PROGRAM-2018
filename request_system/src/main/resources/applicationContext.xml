@@ -1,0 +1,1 @@
+<jpa:repositories base-package="com.test.repository" />

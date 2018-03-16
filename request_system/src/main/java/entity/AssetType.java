@@ -1,14 +1,18 @@
 package entity;
 
+@Entity
 public class AssetType {
-    private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
+    private Long id;
     private String name;
 
     public int getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -20,7 +24,7 @@ public class AssetType {
         this.name = name;
     }
 
-    public AssetType(int id, String name) {
+    public AssetType(Long id, String name) {
         this.id = id;
         this.name = name;
     }

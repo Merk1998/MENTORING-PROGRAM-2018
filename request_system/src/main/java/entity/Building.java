@@ -1,10 +1,14 @@
 package entity;
 
+@Entity
 public class Building {
-    private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
+    private Long id;
     private String name;
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -28,7 +32,7 @@ public class Building {
                 '}';
     }
 
-    public Building (int id, String Name){
+    public Building (Long id, String Name){
         this.id = id;
         this.name = name;
     }

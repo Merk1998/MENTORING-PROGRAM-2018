@@ -1,7 +1,11 @@
 package entity;
 
+@Entity
 public class User {
-    private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
+    private Long id;
     private String name;
     private UserType userType;
     private UserGroup userGroup;
@@ -10,7 +14,7 @@ public class User {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -38,7 +42,7 @@ public class User {
         this.userGroup = userGroup;
     }
 
-    public User(int id, String name) {
+    public User(Long id, String name) {
         this.id = id;
         this.name = name;
     }

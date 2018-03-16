@@ -1,7 +1,11 @@
 package entity;
 
+@Entity
 public class Lab {
-    private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
+    private Long id;
     private  String name;
     private  Building building;
 
@@ -9,7 +13,7 @@ public class Lab {
         return id;
     }
 
-    public void setId(int id){
+    public void setId(Long id){
         this.id = id;
     }
 
@@ -38,7 +42,7 @@ public class Lab {
                 '}';
     }
 
-    public Lab (int id, String name){
+    public Lab (Long id, String name){
         this.id = id;
         this.name = name;
     }
