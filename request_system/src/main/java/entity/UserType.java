@@ -38,7 +38,7 @@ public class UserType {
 
     @Override
     public String toString() {
-        return "UserType{" +
+        return "UserTypeRepository{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 '}';

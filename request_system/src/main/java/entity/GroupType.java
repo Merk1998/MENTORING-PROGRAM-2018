@@ -38,7 +38,7 @@ public class GroupType {
 
     @Override
     public String toString() {
-        return "GroupType{" +
+        return "GroupTypeController{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 '}';
