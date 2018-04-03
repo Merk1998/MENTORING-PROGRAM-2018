@@ -3,20 +3,27 @@ package common.controller;
 import common.entity.Lab;
 import common.repository.LabRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping(path="/demo")
+@RequestMapping(path="/demo", produces = MediaType.APPLICATION_JSON_VALUE)
 public class LabController {
 
     @Autowired
     LabRepository labRepository;
 
-    @GetMapping("/lab")
+    @GetMapping("/labs")
     public @ResponseBody Iterable<Lab> getAllLabs() {
         return labRepository.findAll();
+    }
+
+    @PostMapping(path = "/labs")
+    public String addLab (@RequestBody String name){
+        Lab temp= new Lab();
+        temp.setName(name);
+        labRepository.save(temp);
+        return "Added new lab " + name;
     }
 }

@@ -3,20 +3,27 @@ package common.controller;
 import common.entity.UserGroup;
 import common.repository.UserGroupRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping (path="/demo")
+@RequestMapping (path="/demo", produces = MediaType.APPLICATION_JSON_VALUE)
 public class UserGroupController {
 
     @Autowired
-    UserGroupRepository repository;
+    UserGroupRepository userGroupRepository;
 
     @GetMapping("/users_groups")
     public @ResponseBody Iterable<UserGroup> getAllUsersGroups() {
-        return repository.findAll();
+        return userGroupRepository.findAll();
+    }
+
+    @PostMapping(path = "/users_groups")
+    public String addUserGroup (@RequestBody String name){
+        UserGroup temp= new UserGroup();
+        temp.setName(name);
+        userGroupRepository.save(temp);
+        return "Added new user group " + name;
     }
 }

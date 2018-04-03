@@ -1,24 +1,20 @@
 package common.entity;
 
-//import org.hibernate.annotations.Entity;
-//import org.springframework.data.annotation.Id;
-import common.entity.UserType;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import javax.persistence.*;
 
 @Entity
+@Table(name = "user")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+//    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private Long id;
+
+    @Column(name = "name")
     private String name;
     //private UserType userType;
-   //private UserGroup userGroup;
+    //private UserGroup userGroup;
 
     public Long getId() {
         return id;
@@ -50,15 +46,13 @@ public class User {
 
     public void setUserGroup(UserGroup userGroup) {
         this.userGroup = userGroup;
-    }
+    }*/
 
     @Override
     public String toString() {
         return "User{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", userType=" + userType +
-                ", userGroup=" + userGroup +
                 '}';
-    }*/
+    }
 }

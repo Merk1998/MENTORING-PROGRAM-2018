@@ -1,15 +1,15 @@
 package common.controller;
 
 import common.entity.GroupType;
+import common.entity.TaskType;
 import common.repository.GroupTypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping(path="/demo")
+@RequestMapping(path="/demo", produces = MediaType.APPLICATION_JSON_VALUE)
 public class GroupTypeController {
 
     @Autowired
@@ -18,5 +18,13 @@ public class GroupTypeController {
     @GetMapping("/groups_types")
     public @ResponseBody Iterable<GroupType> getAllGroupsTypes() {
         return repository.findAll();
+    }
+
+    @PostMapping(path = "/group_types")
+    public String addGroupType (@RequestBody String name){
+        GroupType temp= new GroupType();
+        temp.setName(name);
+        repository.save(temp);
+        return "Added new group type " + name;
     }
 }
