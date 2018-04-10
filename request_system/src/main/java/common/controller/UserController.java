@@ -23,13 +23,6 @@ public class UserController {
         return userRepository.findAll();
     }
 
-    /*@PostMapping(path = "/users"/*, consumes = "application/json", produces = "application/json")
-    public void addUser(@RequestBody User user){
-        System.out.println(user);
-        userRepository.save(user);
-    }*/
-
-
     @PostMapping("/post_user") //works very well
     public @ResponseBody
     ResponseEntity<String> postUser(@RequestBody User user) {

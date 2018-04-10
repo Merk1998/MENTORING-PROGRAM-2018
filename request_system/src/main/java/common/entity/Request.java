@@ -3,11 +3,9 @@ package common.entity;
 //import org.hibernate.annotations.Entity;
 //import org.springframework.data.annotation.Id;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
 
 @Entity
 public class Request {
@@ -16,7 +14,10 @@ public class Request {
     @Column(name = "id")
     private Long id;
     private String name;
-    //private Incident incident;
+
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="incident_id")
+    private Incident incident;
 
     public Long getId() {
         return id;
@@ -34,7 +35,7 @@ public class Request {
         this.name = name;
     }
 
-    /*public Incident getIncident() {
+    public Incident getIncident() {
         return incident;
     }
 
@@ -49,5 +50,5 @@ public class Request {
                 ", name='" + name + '\'' +
                 ", incident=" + incident +
                 '}';
-    }*/
+    }
 }

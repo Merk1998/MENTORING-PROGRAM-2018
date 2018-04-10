@@ -17,7 +17,7 @@ public class AssetToRequest {
     private Long id;
     /*private Asset asset;
     private Request request;
-
+*/
     public Long getId() {
         return id;
     }
@@ -25,7 +25,7 @@ public class AssetToRequest {
     public void setId(Long id) {
         this.id = id;
     }
-
+/*
     public Asset getAsset() {
         return asset;
     }

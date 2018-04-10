@@ -2,11 +2,10 @@ package common.entity;
 
 //import org.hibernate.annotations.Entity;
 //import org.springframework.data.annotation.Id;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Incident {
@@ -14,7 +13,19 @@ public class Incident {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private  Long id;
+    @Column(name="name")
     private String name;
+
+    @OneToMany(mappedBy="incident")
+    private List<Request> requests;
+
+    public List<Request> getRequests() {
+        return requests;
+    }
+
+    public void setRequests(List<Request> requests) {
+        this.requests = requests;
+    }
 
     public Long getId() {
         return id;

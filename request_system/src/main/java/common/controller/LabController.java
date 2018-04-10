@@ -1,9 +1,12 @@
 package common.controller;
 
+import common.entity.Incident;
 import common.entity.Lab;
 import common.repository.LabRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,10 +23,9 @@ public class LabController {
     }
 
     @PostMapping(path = "/labs")
-    public String addLab (@RequestBody String name){
-        Lab temp= new Lab();
-        temp.setName(name);
-        labRepository.save(temp);
-        return "Added new lab " + name;
+    public @ResponseBody
+    ResponseEntity<String> postLab (@RequestBody Lab lab){
+        labRepository.save(lab);
+        return new ResponseEntity<String>("Lab type " + lab.getName() + " was added", HttpStatus.CREATED);
     }
 }

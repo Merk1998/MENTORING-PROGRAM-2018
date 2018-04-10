@@ -27,4 +27,6 @@ public class AssetTypeController {
         repository.save(temp);
         return "Added new user group";
     }
+
+
 }

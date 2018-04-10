@@ -1,9 +1,12 @@
 package common.controller;
 
+import common.entity.Task;
 import common.repository.TaskTypeRepository;
 import common.entity.TaskType;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,10 +23,9 @@ public class TaskTypeController {
     }
 
     @PostMapping(path = "/tasks_types")
-    public String addTaskType (@RequestBody String name){
-        TaskType temp= new TaskType();
-        temp.setName(name);
-        repository.save(temp);
-        return "Added new task type " + name;
+    public @ResponseBody
+    ResponseEntity<String> postTaskType (@RequestBody TaskType taskt){
+        repository.save(taskt);
+        return new ResponseEntity<String>("Task type " + taskt.getName() + " was added", HttpStatus.CREATED);
     }
 }

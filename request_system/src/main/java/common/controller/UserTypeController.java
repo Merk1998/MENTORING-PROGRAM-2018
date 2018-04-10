@@ -3,7 +3,9 @@ package common.controller;
 import common.entity.UserType;
 import common.repository.UserTypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,19 +14,19 @@ import org.springframework.web.bind.annotation.*;
 public class UserTypeController {
 
     @Autowired
-    UserTypeRepository userTypeRepository;
+    UserTypeRepository repository;
 
     @GetMapping("/users_types")
     public @ResponseBody
     Iterable <UserType> getAllUsersTypes() {
-        return userTypeRepository.findAll();
+        return repository.findAll();
     }
 
-    @PostMapping(path = "/users_types")
-    public String addUserType(@RequestBody String name){
-        UserType temp = new UserType();
-        temp.setName(name);
-        userTypeRepository.save(temp);
-        return "Added new user type " + name;
+    @PostMapping("/user_types") //works very well
+    public @ResponseBody
+    ResponseEntity<String> postUserType(@RequestBody UserType usert) {
+        repository.save(usert);
+        return new ResponseEntity<String>("User type " + usert.getName() + " was added", HttpStatus.CREATED);
     }
+
 }

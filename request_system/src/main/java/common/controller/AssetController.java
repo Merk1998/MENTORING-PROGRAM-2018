@@ -1,9 +1,12 @@
 package common.controller;
 
 import common.entity.Asset;
+import common.entity.Building;
 import common.entity.User;
 import common.repository.AssetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,9 +22,10 @@ public class AssetController {
         return assetRepository.findAll();
     }
 
-    @GetMapping(path="/say")
+    @PostMapping(path = "/assets")
     public @ResponseBody
-    String sayHello () {
-        return "Hello, I'm work";
+    ResponseEntity<String> postAsset (@RequestBody Asset asset){
+        assetRepository.save(asset);
+        return new ResponseEntity<String>("Asset " + asset.getName() + " was added", HttpStatus.CREATED);
     }
 }
